@@ -71,6 +71,23 @@ async function run() {
     });
 
 
+    //  for update
+    app.put("/garden-tips/public/:id", async(req,res)=>{
+    const id =req.params.id;
+    const filter= {_id: new ObjectId(id)}
+    const resultShows = req.body;
+    const updateDoc={
+      $set: resultShows
+    }
+    const options ={upsert: true};
+    const results=await tipsCollection.updateOne(filter, updateDoc, options);
+    console.log(resultShows)
+    res.send(results)
+    })
+
+
+
+
 
 
 
