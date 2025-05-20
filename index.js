@@ -39,6 +39,16 @@ async function run() {
     res.send(result)
     });
 
+    // get garden tip
+    app.get("/garden-tips", async(req,res)=>{
+    const cursor = tipsCollection.find();
+    const showResult = await cursor.toArray();
+    res.send(showResult)
+
+
+    })
+
+
 
 
 
