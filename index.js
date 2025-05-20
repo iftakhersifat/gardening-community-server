@@ -1,5 +1,5 @@
 const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
 const cors = require('cors');
 const app = express();
@@ -40,13 +40,38 @@ async function run() {
     });
 
     // get garden tip
-    app.get("/garden-tips", async(req,res)=>{
+    app.get("/garden-tips/public", async(req,res)=>{
     const cursor = tipsCollection.find();
     const showResult = await cursor.toArray();
     res.send(showResult)
-
-
     })
+
+    // single id show
+    app.get("/garden-tips/public/:id", async(req, res)=>{
+    const id= req.params.id;
+    const query = {_id: new ObjectId(id)}
+    const resultShow = await tipsCollection.findOne(query)
+    res.send(resultShow)
+    })
+
+    // my tips
+    app.get('/my-tips', async (req, res) => {
+  const userEmail = req.query.email;
+  const query = { userEmail }; // fetch tips for this user
+  const result = await tipsCollection.find(query).toArray();
+  res.send(result);
+});
+    
+     // for delete
+    app.delete("/garden-tips/:id", async (req, res) => {
+    const id = req.params.id;
+    const query = { _id: new ObjectId(id) };
+    const resultShow = await tipsCollection.deleteOne(query);
+    res.send(resultShow);
+    });
+
+
+
 
 
 
