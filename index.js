@@ -7,13 +7,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: ["http://localhost:5173"], // production site
-<<<<<<< HEAD
+  origin: ["http://localhost:5173"],
   credentials: true
-=======
-  credentials: true // যদি future-এ cookies/token লাগে
->>>>>>> c00822c08ecce8f5c9ad4278bfcf7823fcb58e13
 }));
+
 app.use(express.json());
 
 console.log(process.env.DB_USER);
