@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "gardening-resource-hub-server",
+=======
+  "name": "gardening-community-server",
+>>>>>>> c00822c08ecce8f5c9ad4278bfcf7823fcb58e13
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
